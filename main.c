@@ -6,14 +6,14 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:23 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 14:33:57 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/02 14:52:37 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 #include "test_strlen.h"
 
-int	main()
+int	main(void)
 {
 	strlen_launcher();
 	return (0);
