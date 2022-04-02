@@ -11,28 +11,15 @@ OBJS	= $(__SRCS:.c=.o)
 CC		= clang
 
 CFLAGS	= -Wall -Werror -Wextra
-INCLUDE	=
-LIBS	=
-
-# Color
-
-RESET	= \033[0;0m
-FG_WHIT	= \033[0;97m
-FG_GRAY	= \033[0;37m
-FG_MAGE	= \033[0;35m
-FG_CYAN	= \033[0;36m
-FG_GREE	= \033[0;32m
-FG_REDD	= \033[0;31m
+INCLUDE	= -I ../../inc/ -I ./
 
 # Rules
 all: $(NAME)
 
 %.o: %.c ../../inc/libunit.h test_$(NAME).h
-	@$(CC) $(CFLAGS) $(INCLUDE) -I ../../inc/ -I ./ -c $< -o $@
-	@printf "$(FG_GRAY).$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@printf "\n";
 
 clean:
 	@rm -f $(OBJS)
