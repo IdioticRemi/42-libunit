@@ -6,7 +6,7 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:42:58 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 12:47:19 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/02 13:31:52 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,21 @@ static void	print_test_result(char *name, char *testname, int status)
 		putstr("\033[0;36m[ BUS ERROR ]");
 	else
 		putstr("\033[0;31m[ KO ]");
-	putstr("\033[0;0m");
+	putstr("\033[0;0m\n");
 }
 
 static void	print_total(char *name, int ok, int ko)
 {
+	putstr("\n");
+	if (ok + ko == ok)
+		putstr("\033[0;32m");
+	else
+		putstr("\033[0;31m");
 	putstr(name);
-	putstr(": ");
 	putint(ok);
 	putstr(" tests out of ");
 	putint(ko + ok);
-	putstr(" were successful!");
+	putstr(" were successful!\033[0;0m\n");
 }
 
 static int	start_test(t_testlist *test)
