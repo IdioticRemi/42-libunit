@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_tests.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:42:58 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 14:43:33 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/02 14:49:02 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ static void	print_test_result(char *name, char *testname, int status)
 		putstr("\033[0;32m[ OK ]");
 	else if (status == SIGSEGV)
 		putstr("\033[0;35m[ SIGSEGV ]");
+	else if (status == SIGABRT)
+		putstr("\033[0;35m[ SIGABRT ]");
+	else if (status == SIGFPE)
+		putstr("\033[0;35m[ SIGFPE ]");
+	else if (status == SIGPIPE)
+		putstr("\033[0;35m[ SIGPIPE ]");
+	else if (status == SIGILL)
+		putstr("\033[0;35m[ SIGILL ]");
 	else if (status == SIGBUS)
 		putstr("\033[0;36m[ BUS ERROR ]");
 	else
@@ -42,21 +50,6 @@ static void	print_total(char *name, int ok, int ko)
 	putstr(" tests out of ");
 	putint(ko + ok);
 	putstr(" were successful!\033[0;0m\n");
-}
-
-static int	free_tests(t_testlist **testlist, int ret)
-{
-	t_testlist	*test;
-	t_testlist	*tmp;
-
-	test = *testlist;
-	while (test)
-	{
-		tmp = test;
-		test = test->next;
-		free(tmp);
-	}
-	return (ret);
 }
 
 static int	start_test(t_testlist *test)
@@ -87,7 +80,7 @@ int	launch_tests(char *name, t_testlist **testlist)
 	int			ret;
 
 	if (!testlist)
-		return (-1);
+		return (1);
 	ok = 0;
 	ko = 0;
 	tmp = *testlist;
@@ -105,5 +98,5 @@ int	launch_tests(char *name, t_testlist **testlist)
 		tmp = tmp->next;
 	}
 	print_total(name, ok, ko);
-	return (free_tests(testlist, (ko > 0) * -1));
+	return ((ko > 0) * -1);
 }
