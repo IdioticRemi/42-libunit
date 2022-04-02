@@ -6,7 +6,7 @@
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:38:30 by tlafay            #+#    #+#             */
-/*   Updated: 2022/04/02 13:28:55 by tlafay           ###   ########.fr       */
+/*   Updated: 2022/04/02 14:16:49 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,4 @@ int	strlen_launcher(void)
 	load_test(&tests, "Null test", &null_test, TRUE);
 	load_test(&tests, "Long test", &long_test, TRUE);
 	return (launch_tests("strlen", &tests));
-}
-
-int	main()
-{
-	strlen_launcher();
 }
