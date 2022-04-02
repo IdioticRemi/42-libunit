@@ -6,7 +6,7 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:42:58 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 13:31:52 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/02 13:32:15 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	print_total(char *name, int ok, int ko)
 	else
 		putstr("\033[0;31m");
 	putstr(name);
+	putstr(": ");
 	putint(ok);
 	putstr(" tests out of ");
 	putint(ko + ok);
