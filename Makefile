@@ -7,7 +7,6 @@ NAME^^	= $(shell echo $(NAME) | tr 'a-z' 'A-Z')
 INC_DIR	= inc/
 SRC_DIR	= src/
 OBJ_DIR	= obj/
-SUBDIRS = $(addprefix $(OBJ_DIR), $(shell find . -mindepth 1 -type d -path "./src/*" | cut -c 7-))
 
 # Sources
 __SRCS	= $(shell find . -type f -path "./src/*.c" | cut -c 7-)
@@ -35,7 +34,7 @@ FG_REDD	= \033[0;31m
 # Rules
 all: log $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)/$(NAME).h
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)/libunit.h
 	@mkdir -p $(OBJ_DIR) $(SUBDIRS)
 	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)$@ $(FG_CYAN)\033[40G[.]$(RESET)\r"
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   libunit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:24:08 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 12:06:07 by tlafay           ###   ########.fr       */
+/*   Updated: 2022/04/02 12:40:17 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBUNIT_H
 # define LIBUNIT_H
 
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+
 # define TRUE 1
 # define FALSE 0
-
-# include <sys/wait.h>
-# include <stdio.h>
-# include <stdlib.h>
 
 typedef struct s_testlist
 {
@@ -29,7 +30,8 @@ typedef struct s_testlist
 }	t_testlist;
 
 void	*ft_xmalloc(int size);
-void	load_test(t_testlist **head, char *name,
-			int (*test)(void), int enabled);
+void	load_test(t_testlist **h, char *n, int (*t)(void), int e);
+void	putint(int x);
+void	putstr(char *str);
 
 #endif
