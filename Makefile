@@ -1,5 +1,5 @@
 # Program name
-NAME	= libunit.a
+NAME	= libunit
 NAME^^	= $(shell echo $(NAME) | tr 'a-z' 'A-Z')
 
 # Directories
@@ -17,7 +17,7 @@ OBJS	= $(addprefix $(OBJ_DIR), $(__SRCS:.c=.o))
 # Compile
 CC		= clang
 
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g3
 INCLUDE	= -I $(INC_DIR)
 LIBS	=
 
@@ -41,9 +41,22 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)/libunit.h
 	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)$@ $(FG_GREE)\033[40G[✓]$(RESET)\n"
 
 $(NAME): $(OBJS)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+	@ar rc $(NAME).a $(OBJS)
+	@ranlib $(NAME).a
 	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_GREE)Built '$(NAME)'.$(RESET)\n"
+
+compile_tests:
+	@make -s -C tests/strlen
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/tests
+
+	@mkdir -p $(OBJ_DIR)/tests/strlen
+	@cp tests/strlen/*.c $(OBJ_DIR)tests/strlen;
+
+test: all compile_tests
+	@$(eval OBJS := $(shell find . -type f -path "./obj/*.c"))
+	@$(CC) $(CFLAGS) $(INCLUDE) -I ./tests/* -o tester main.c $(OBJS) -L./ -lunit
+	@./tester
 
 log:
 	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_CYAN)Starting build process.$(RESET)\n"

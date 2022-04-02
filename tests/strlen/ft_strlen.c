@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02_null_test.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 12:44:39 by tlafay            #+#    #+#             */
-/*   Updated: 2022/04/02 13:26:57 by tlafay           ###   ########.fr       */
+/*   Created: 2022/04/02 12:18:08 by tlafay            #+#    #+#             */
+/*   Updated: 2022/04/02 14:43:33 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
-int	null_test(void)
+int	ft_strlen(char *str)
 {
-	if (ft_strlen((void *)0) == 0)
+	int	i;
+
+	if (!str)
 		return (0);
-	else
-		return (-1);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

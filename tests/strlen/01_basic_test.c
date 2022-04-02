@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xmalloc.c                                       :+:      :+:    :+:   */
+/*   01_basic_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 12:03:40 by tlafay            #+#    #+#             */
-/*   Updated: 2022/04/02 12:38:04 by tlafay           ###   ########.fr       */
+/*   Created: 2022/04/02 12:44:37 by tlafay            #+#    #+#             */
+/*   Updated: 2022/04/02 14:43:35 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "test_strlen.h"
 
-void	*ft_xmalloc(int size)
+int	basic_test(void)
 {
-	void	*ptr;
-
-	ptr = (void *)malloc(size);
-	if (!size)
-		exit(1);
-	return (ptr);
+	if (ft_strlen("Salut") == 5)
+		return (0);
+	else
+		return (-1);
 }

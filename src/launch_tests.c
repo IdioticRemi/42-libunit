@@ -6,7 +6,7 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:42:58 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 13:32:15 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/02 14:43:33 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,21 @@ static void	print_total(char *name, int ok, int ko)
 	putstr(" were successful!\033[0;0m\n");
 }
 
+static int	free_tests(t_testlist **testlist, int ret)
+{
+	t_testlist	*test;
+	t_testlist	*tmp;
+
+	test = *testlist;
+	while (test)
+	{
+		tmp = test;
+		test = test->next;
+		free(tmp);
+	}
+	return (ret);
+}
+
 static int	start_test(t_testlist *test)
 {
 	int	pid;
@@ -72,7 +87,7 @@ int	launch_tests(char *name, t_testlist **testlist)
 	int			ret;
 
 	if (!testlist)
-		return (1);
+		return (-1);
 	ok = 0;
 	ko = 0;
 	tmp = *testlist;
@@ -90,5 +105,5 @@ int	launch_tests(char *name, t_testlist **testlist)
 		tmp = tmp->next;
 	}
 	print_total(name, ok, ko);
-	return ((ko > 0) * -1);
+	return (free_tests(testlist, (ko > 0) * -1));
 }
