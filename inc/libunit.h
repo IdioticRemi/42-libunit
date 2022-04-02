@@ -6,7 +6,7 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:24:08 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 12:40:17 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/02 12:50:55 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	*ft_xmalloc(int size);
 void	load_test(t_testlist **h, char *n, int (*t)(void), int e);
 void	putint(int x);
 void	putstr(char *str);
+int		launch_tests(char *name, t_testlist **testlist);
 
 #endif
