@@ -6,7 +6,7 @@
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:42:58 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 14:49:02 by tlafay           ###   ########.fr       */
+/*   Updated: 2022/04/02 15:10:14 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	print_test_result(char *name, char *testname, int status)
 	if (status == 0)
 		putstr("\033[0;32m[ OK ]");
 	else if (status == SIGSEGV)
-		putstr("\033[0;35m[ SIGSEGV ]");
+		putstr("\033[0;38m[ SIGSEGV ]");
 	else if (status == SIGABRT)
-		putstr("\033[0;35m[ SIGABRT ]");
+		putstr("\033[0;37m[ SIGABRT ]");
 	else if (status == SIGFPE)
-		putstr("\033[0;35m[ SIGFPE ]");
+		putstr("\033[0;33m[ SIGFPE ]");
 	else if (status == SIGPIPE)
-		putstr("\033[0;35m[ SIGPIPE ]");
+		putstr("\033[0;34m[ SIGPIPE ]");
 	else if (status == SIGILL)
 		putstr("\033[0;35m[ SIGILL ]");
 	else if (status == SIGBUS)
@@ -79,7 +79,7 @@ int	launch_tests(char *name, t_testlist **testlist)
 	int			ko;
 	int			ret;
 
-	if (!testlist)
+	if (!testlist || !name)
 		return (1);
 	ok = 0;
 	ko = 0;

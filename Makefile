@@ -17,7 +17,7 @@ OBJS	= $(addprefix $(OBJ_DIR), $(__SRCS:.c=.o))
 # Compile
 CC		= clang
 
-CFLAGS	= -Wall -Werror -Wextra -g3
+CFLAGS	= -Wall -Werror -Wextra
 INCLUDE	= -I $(INC_DIR)
 LIBS	=
 
