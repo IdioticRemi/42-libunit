@@ -52,6 +52,21 @@ static void	print_total(char *name, int ok, int ko)
 	putstr(" were successful!\033[0;0m\n");
 }
 
+static int	free_tests(t_testlist **testlist, int ret)
+{
+	t_testlist	*test;
+	t_testlist	*tmp;
+
+	test = *testlist;
+	while (test)
+	{
+		tmp = test;
+		test = test->next;
+		free(tmp);
+	}
+	return (ret);
+}
+
 static int	start_test(t_testlist *test)
 {
 	int	pid;
@@ -79,8 +94,8 @@ int	launch_tests(char *name, t_testlist **testlist)
 	int			ko;
 	int			ret;
 
-	if (!testlist || !name)
-		return (1);
+	if (!testlist)
+		return (-1);
 	ok = 0;
 	ko = 0;
 	tmp = *testlist;
@@ -98,5 +113,5 @@ int	launch_tests(char *name, t_testlist **testlist)
 		tmp = tmp->next;
 	}
 	print_total(name, ok, ko);
-	return ((ko > 0) * -1);
+	return (free_tests(testlist, (ko > 0) * -1));
 }
