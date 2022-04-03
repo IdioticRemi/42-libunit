@@ -14,6 +14,7 @@
 
 int	sig_timeout_test(void)
 {
-	while (1);
+	while (1)
+		;
 	return (-1);
 }
