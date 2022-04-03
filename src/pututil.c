@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pututil.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:37:44 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 12:40:08 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/03 17:57:50 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	putstr(char *str)
 
 void	putint(int x)
 {
-	if (x > 10)
-		putint(x % 10);
-	putchar('0' + x);
+	if (x >= 10)
+		putint(x / 10);
+	putchar('0' + x % 10);
 }

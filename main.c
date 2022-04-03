@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:23 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/03 15:59:10 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/03 17:00:27 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
-#include "real_tests/strlen/test_strlen.h"
+#include "real_tests/ft_split/test_split.h"
 
 int	main(void)
 {
-	strlen_launcher();
+	split_launcher();
 	return (0);
 }

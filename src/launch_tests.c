@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_tests.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:42:58 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 15:22:29 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/03 17:48:11 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	print_test_result(char *name, char *testname, int status)
 	putstr(": ");
 	if (status == 0)
 		putstr("\033[0;32m[ OK ]");
-	else if (status == SIGSEGV)
-		putstr("\033[0;35m[ SIGSEGV ]");
 	else if (status == SIGBUS)
 		putstr("\033[0;36m[ BUS ERROR ]");
+	else if (status == SIGSEGV)
+		putstr("\033[0;35m[ SIGSEGV ]");
 	else
 		putstr("\033[0;31m[ KO ]");
 	putstr("\033[0;0m\n");

@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02_null_test.c                                     :+:      :+:    :+:   */
+/*   03_long_test.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 12:44:39 by tlafay            #+#    #+#             */
-/*   Updated: 2022/04/02 14:43:35 by tjolivea         ###   ########lyon.fr   */
+/*   Created: 2022/04/02 12:44:42 by tlafay            #+#    #+#             */
+/*   Updated: 2022/04/03 16:46:43 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_strlen.h"
+#include "test_split.h"
 
-int	strlen_null_test(void)
+int	split_long_test(void)
 {
-	if (ft_strlen((void *)0) == 0)
+	char	**splitted;
+
+	splitted = ft_split("   Salut                   ca                     va                       ?                   ", ' ');
+	if (!ft_strncmp(splitted[0], "Salut", 5)
+		&& !ft_strncmp(splitted[1], "ca", 2)
+		&& !ft_strncmp(splitted[2], "va", 2)
+		&& !ft_strncmp(splitted[3], "?", 1))
 		return (0);
 	else
 		return (-1);

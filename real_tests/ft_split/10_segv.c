@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   00_launcher.c                                      :+:      :+:    :+:   */
+/*   10_segv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 12:38:30 by tlafay            #+#    #+#             */
-/*   Updated: 2022/04/03 15:41:58 by tjolivea         ###   ########lyon.fr   */
+/*   Created: 2022/04/02 12:44:42 by tlafay            #+#    #+#             */
+/*   Updated: 2022/04/03 17:32:31 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_strlen.h"
+#include "test_split.h"
 
-int	strlen_launcher(void)
+int	split_segv(void)
 {
-	t_testlist	*tests;
+	char	**splitted;
 
-	tests = 0;
-	load_test(&tests, "Basic test", &strlen_basic_test, TRUE);
-	load_test(&tests, "Null test", &strlen_null_test, TRUE);
-	load_test(&tests, "Long test", &strlen_long_test, TRUE);
-	return (launch_tests("strlen", &tests));
+	splitted = ft_split((char *) 3564, 1);
+	if (!ft_strncmp(splitted[0], "", 0))
+		return (0);
+	else
+		return (-1);
 }

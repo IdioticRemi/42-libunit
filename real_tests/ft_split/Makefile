@@ -1,5 +1,5 @@
 # Test Name
-NAME	= strlen
+NAME	= ft_split
 
 # Sources
 __SRCS	= $(shell find . -type f -path "./*.c")

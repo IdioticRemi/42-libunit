@@ -58,9 +58,9 @@ compile_tests:
 	mkdir -p $(OBJ_DIR)$(LIB_DIR)
 	cp $(LIB_DIR)/*.o $(OBJ_DIR)$(LIB_DIR)
 #		TEST STRLEN
-	make -s -C $(TST_DIR)strlen
-	mkdir -p $(OBJ_DIR)$(TST_DIR)strlen
-	cp $(TST_DIR)strlen/*.o $(OBJ_DIR)$(TST_DIR)strlen
+	make -s -C $(TST_DIR)ft_split
+	mkdir -p $(OBJ_DIR)$(TST_DIR)ft_split
+	cp $(TST_DIR)ft_split/*.o $(OBJ_DIR)$(TST_DIR)ft_split
 #		TEST SPLIT
 #	make -s -C $(TST_DIR)split
 #	mkdir -p $(OBJ_DIR)$(TST_DIR)split
@@ -82,7 +82,7 @@ clean:
 fclean:
 	$(shell find . -type d -path "./real_tests/*" -exec make fclean -s -C {} +)
 	make -s -C $(LIB_DIR) fclean
-	rm -rf $(NAME) $(OBJ_DIR)
+	rm -rf $(NAME).a $(OBJ_DIR) run_tests
 	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Program files cleaned.$(RESET)\n"
 
 re: fclean all
