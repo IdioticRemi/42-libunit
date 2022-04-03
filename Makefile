@@ -58,13 +58,11 @@ compile_tests:
 	mkdir -p $(OBJ_DIR)$(LIB_DIR)
 	cp $(LIB_DIR)/*.o $(OBJ_DIR)$(LIB_DIR)
 #		TEST STRLEN
-	make -s -C $(TST_DIR)ft_split
-	mkdir -p $(OBJ_DIR)$(TST_DIR)ft_split
-	cp $(TST_DIR)ft_split/*.o $(OBJ_DIR)$(TST_DIR)ft_split
-#		TEST SIG BONUS
-	make -s -C $(TST_DIR)sig
-	mkdir -p $(OBJ_DIR)$(TST_DIR)sig
-	cp $(TST_DIR)sig/*.o $(OBJ_DIR)$(TST_DIR)sig
+	for d in ./real_tests/*; do ( \
+		make -s -C $$d; \
+		mkdir -p $(OBJ_DIR)$$d; \
+		cp $$d/*.o $(OBJ_DIR)$$d; \
+ 	); done
 
 	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)Compiled all the tests. $(FG_GREE)\033[40G[✓]$(RESET)\n"
 
@@ -80,7 +78,7 @@ clean:
 	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Build objects cleaned.$(RESET)\n"
 
 fclean:
-	for d in ./real_tests/*; do ( make -s -C "$$d" fclean ) ; done
+	for d in ./real_tests/*; do ( make -s -C "$$d" fclean ); done
 	make -s -C $(LIB_DIR) fclean
 	rm -rf $(NAME).a $(OBJ_DIR) run_tests
 	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Program files cleaned.$(RESET)\n"
