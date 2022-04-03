@@ -6,7 +6,7 @@
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:42:58 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/03 20:05:15 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/03 20:12:38 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	print_test_result(char *name, char *testname, int status)
 		putstr("\033[40G\033[1;33m[ SIGPIPE ]");
 	else if (status == SIGILL)
 		putstr("\033[1;33m[ SIGILL ]");
+	else if (status == SIGALRM)
+		putstr("\033[1;34m[ TIMEOUT ]");
 	else
 		putstr("\033[1;31m[ KO ]");
 	putstr("\033[0;0m\n");
@@ -94,6 +96,7 @@ static int	start_test(t_testlist *test)
 			return (WEXITSTATUS(status));
 		return (1);
 	}
+	alarm(1);
 	exit(test->test());
 }
 
