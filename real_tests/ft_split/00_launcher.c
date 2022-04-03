@@ -6,7 +6,7 @@
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:38:30 by tlafay            #+#    #+#             */
-/*   Updated: 2022/04/03 17:35:34 by tlafay           ###   ########.fr       */
+/*   Updated: 2022/04/03 18:07:30 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int	split_launcher(void)
 	load_test(&tests, "Separators first", &split_separators_first, TRUE);
 	load_test(&tests, "Test Segv", &split_segv, TRUE);
 	load_test(&tests, "Test sigbus", &split_sigbus, TRUE);
+	load_test(&tests, "More tests", &split_more_tests, TRUE);
 	return (launch_tests("ft_split", &tests));
 }

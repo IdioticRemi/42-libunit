@@ -6,7 +6,7 @@
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 14:07:34 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/03 17:35:45 by tlafay           ###   ########.fr       */
+/*   Updated: 2022/04/03 18:07:02 by tlafay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	split_non_ascii(void);
 int	split_separators_first(void);
 int	split_segv(void);
 int	split_sigbus(void);
+int	split_more_tests(void);
 
 #endif
