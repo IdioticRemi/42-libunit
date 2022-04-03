@@ -6,7 +6,7 @@
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:42:58 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/03 17:48:11 by tlafay           ###   ########.fr       */
+/*   Updated: 2022/04/03 20:05:15 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,48 @@ static void	print_test_result(char *name, char *testname, int status)
 	putstr(": ");
 	putstr(testname);
 	putstr(": ");
+	putstr("\033[40G");
 	if (status == 0)
-		putstr("\033[0;32m[ OK ]");
+		putstr("\033[1;32m[ OK ]");
 	else if (status == SIGBUS)
-		putstr("\033[0;36m[ BUS ERROR ]");
+		putstr("\033[1;33m[ SIGBUS ]");
 	else if (status == SIGSEGV)
-		putstr("\033[0;35m[ SIGSEGV ]");
+		putstr("\033[1;33m[ SIGSEGV ]");
+	else if (status == SIGABRT)
+		putstr("\033[1;33m[ SIGABRT ]");
+	else if (status == SIGFPE)
+		putstr("\033[1;33m[ SIGFPE ]");
+	else if (status == SIGPIPE)
+		putstr("\033[40G\033[1;33m[ SIGPIPE ]");
+	else if (status == SIGILL)
+		putstr("\033[1;33m[ SIGILL ]");
 	else
-		putstr("\033[0;31m[ KO ]");
+		putstr("\033[1;31m[ KO ]");
 	putstr("\033[0;0m\n");
 }
 
 static void	print_total(char *name, int ok, int ko)
 {
 	putstr("\n");
-	if (ok + ko == ok)
-		putstr("\033[0;32m");
-	else
-		putstr("\033[0;31m");
+	putstr("\033[1m");
 	putstr(name);
 	putstr(": ");
+	if (ko == 0)
+		putstr("\033[1;32m");
+	else if (ok == 0)
+		putstr("\033[1;31m");
+	else
+		putstr("\033[1;33m");
 	putint(ok);
+	putstr("\033[0;0m");
+	putstr("\033[1m");
 	putstr(" tests out of ");
+	putstr("\033[1;36m");
 	putint(ko + ok);
-	putstr(" were successful!\033[0;0m\n");
+	putstr("\033[0;0m");
+	putstr("\033[1m");
+	putstr(" were successful!\n\n");
+	putstr("\033[0;0m");
 }
 
 static int	free_tests(t_testlist **testlist, int ret)

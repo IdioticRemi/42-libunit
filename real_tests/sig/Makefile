@@ -1,5 +1,5 @@
 # Test Name
-NAME	= ft_split
+NAME	= sig
 
 # Sources
 __SRCS	= $(shell find . -type f -path "./*.c")

@@ -6,12 +6,12 @@ NAME^^	= $(shell echo $(NAME) | tr 'a-z' 'A-Z')
 
 TST_DIR	= real_tests/
 LIB_DIR	= to_test/
-INC_DIR	= inc/
-SRC_DIR	= src/
+INC_DIR	= framework/inc/
+SRC_DIR	= framework/
 OBJ_DIR	= obj/
 
 # Sources
-__SRCS	= $(shell find . -type f -path "./src/*.c" | cut -c 7-)
+__SRCS	= $(shell find . -type f -path "./framework/*.c" | cut -c 13-)
 
 SRCS	= $(addprefix $(SRC_DIR), $(__SRCS))
 OBJS	= $(addprefix $(OBJ_DIR), $(__SRCS:.c=.o))
@@ -61,10 +61,10 @@ compile_tests:
 	make -s -C $(TST_DIR)ft_split
 	mkdir -p $(OBJ_DIR)$(TST_DIR)ft_split
 	cp $(TST_DIR)ft_split/*.o $(OBJ_DIR)$(TST_DIR)ft_split
-#		TEST SPLIT
-#	make -s -C $(TST_DIR)split
-#	mkdir -p $(OBJ_DIR)$(TST_DIR)split
-#	cp $(TST_DIR)split/*.o $(OBJ_DIR)$(TST_DIR)split
+#		TEST SIG BONUS
+	make -s -C $(TST_DIR)sig
+	mkdir -p $(OBJ_DIR)$(TST_DIR)sig
+	cp $(TST_DIR)sig/*.o $(OBJ_DIR)$(TST_DIR)sig
 
 	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)Compiled all the tests. $(FG_GREE)\033[40G[✓]$(RESET)\n"
 
@@ -80,7 +80,7 @@ clean:
 	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Build objects cleaned.$(RESET)\n"
 
 fclean:
-	$(shell find . -type d -path "./real_tests/*" -exec make fclean -s -C {} +)
+	for d in ./real_tests/*; do ( make -s -C "$$d" fclean ) ; done
 	make -s -C $(LIB_DIR) fclean
 	rm -rf $(NAME).a $(OBJ_DIR) run_tests
 	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Program files cleaned.$(RESET)\n"

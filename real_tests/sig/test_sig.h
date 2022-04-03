@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_test.h                                          :+:      :+:    :+:   */
+/*   test_sig.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 15:49:53 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/03 18:13:52 by tjolivea         ###   ########lyon.fr   */
+/*   Created: 2022/04/03 18:18:29 by tjolivea          #+#    #+#             */
+/*   Updated: 2022/04/03 19:22:21 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TO_TEST_H
-# define TO_TEST_H
+#ifndef TEST_SIG_H
+# define TEST_SIG_H
 
-# include <stdlib.h>
+# include "../../framework/inc/libunit.h"
 
-size_t	ft_strlen(char *s);
-char	**ft_split(const char *str, char c);
-int		ft_strncmp(const char *s1, const char *s2, unsigned int n);
+int	sig_launcher(void);
+int	sig_sigabrt_test(void);
+int	sig_sigfpe_test(void);
+int	sig_sigpipe_test(void);
+int	sig_sigill_test(void);
 
 #endif

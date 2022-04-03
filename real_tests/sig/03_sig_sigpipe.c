@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_test.h                                          :+:      :+:    :+:   */
+/*   03_sig_sigpipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 15:49:53 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/03 18:13:52 by tjolivea         ###   ########lyon.fr   */
+/*   Created: 2022/04/03 19:41:51 by tjolivea          #+#    #+#             */
+/*   Updated: 2022/04/03 19:41:51 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TO_TEST_H
-# define TO_TEST_H
+#include "test_sig.h"
 
-# include <stdlib.h>
-
-size_t	ft_strlen(char *s);
-char	**ft_split(const char *str, char c);
-int		ft_strncmp(const char *s1, const char *s2, unsigned int n);
-
-#endif
+int	sig_sigpipe_test(void)
+{
+	raise(SIGPIPE);
+	return (-1);
+}

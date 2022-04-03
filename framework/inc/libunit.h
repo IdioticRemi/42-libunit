@@ -18,7 +18,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# include "../to_test/to_test.h"
+# include "../../to_test/to_test.h"
 
 # define TRUE 1
 # define FALSE 0

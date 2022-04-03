@@ -13,7 +13,7 @@
 #ifndef TEST_SPLIT_H
 # define TEST_SPLIT_H
 
-# include "../../inc/libunit.h"
+# include "../../framework/inc/libunit.h"
 
 int	split_launcher(void);
 int	split_basic_test(void);
