@@ -6,4 +6,5 @@ obj
 test
 a.out
 *.a
-tester
+run_tests
+*.o

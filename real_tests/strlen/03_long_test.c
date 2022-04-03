@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   00_launcher.c                                      :+:      :+:    :+:   */
+/*   03_long_test.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 12:38:30 by tlafay            #+#    #+#             */
-/*   Updated: 2022/04/02 14:43:58 by tjolivea         ###   ########lyon.fr   */
+/*   Created: 2022/04/02 12:44:42 by tlafay            #+#    #+#             */
+/*   Updated: 2022/04/02 14:43:35 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
 #include "test_strlen.h"
 
-int	strlen_launcher(void)
+int	strlen_long_test(void)
 {
-	t_testlist	*tests;
-
-	tests = 0;
-	load_test(&tests, "Basic test", &basic_test, TRUE);
-	load_test(&tests, "Null test", &null_test, TRUE);
-	load_test(&tests, "Long test", &long_test, TRUE);
-	return (launch_tests("strlen", &tests));
+	if (ft_strlen("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") == 50)
+		return (0);
+	else
+		return (-1);
 }

@@ -1,5 +1,5 @@
 # Test Name
-NAME	= strlen
+NAME	= to_test
 
 # Sources
 __SRCS	= $(shell find . -type f -path "./*.c")
@@ -11,12 +11,12 @@ OBJS	= $(__SRCS:.c=.o)
 CC		= clang
 
 CFLAGS	= -Wall -Werror -Wextra
-INCLUDE	= -I ../../inc/ -I ./
+INCLUDE	= -I ../inc/ -I ./
 
 # Rules
 all: $(NAME)
 
-%.o: %.c ../../inc/libunit.h test_$(NAME).h
+%.o: %.c $(NAME).h
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJS)

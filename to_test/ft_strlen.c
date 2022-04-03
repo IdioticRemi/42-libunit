@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 14:07:34 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 14:08:04 by tjolivea         ###   ########lyon.fr   */
+/*   Created: 2022/04/03 15:48:08 by tjolivea          #+#    #+#             */
+/*   Updated: 2022/04/03 15:51:36 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_STRLEN_H
-# define TEST_STRLEN_H
+#include "to_test.h"
 
-int	strlen_launcher(void);
-int	basic_test(void);
-int	null_test(void);
-int	long_test(void);
-int	ft_strlen(char *str);
+size_t	ft_strlen(char *s)
+{
+	size_t	i;
 
-#endif
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

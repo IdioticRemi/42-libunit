@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   03_long_test.c                                     :+:      :+:    :+:   */
+/*   02_null_test.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlafay <tlafay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 12:44:42 by tlafay            #+#    #+#             */
+/*   Created: 2022/04/02 12:44:39 by tlafay            #+#    #+#             */
 /*   Updated: 2022/04/02 14:43:35 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_strlen.h"
 
-int	long_test(void)
+int	strlen_null_test(void)
 {
-	if (ft_strlen("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") == 50)
+	if (ft_strlen((void *)0) == 0)
 		return (0);
 	else
 		return (-1);

@@ -4,6 +4,8 @@ NAME^^	= $(shell echo $(NAME) | tr 'a-z' 'A-Z')
 
 # Directories
 
+TST_DIR	= real_tests/
+LIB_DIR	= to_test/
 INC_DIR	= inc/
 SRC_DIR	= src/
 OBJ_DIR	= obj/
@@ -32,52 +34,58 @@ FG_GREE	= \033[0;32m
 FG_REDD	= \033[0;31m
 
 # Rules
-all: log $(NAME)
+all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)/libunit.h
-	@mkdir -p $(OBJ_DIR) $(SUBDIRS)
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)$@ $(FG_CYAN)\033[40G[.]$(RESET)\r"
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)$@ $(FG_GREE)\033[40G[✓]$(RESET)\n"
+	mkdir -p $(OBJ_DIR) $(SUBDIRS)
+	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)$@ $(FG_CYAN)\033[40G[.]$(RESET)\r"
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)$@ $(FG_GREE)\033[40G[✓]$(RESET)\n"
 
 $(NAME): $(OBJS)
-	@ar rc $(NAME).a $(OBJS)
-	@ranlib $(NAME).a
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_GREE)Built '$(NAME)'.$(RESET)\n"
+	ar rc $(NAME).a $(OBJS)
+	ranlib $(NAME).a
+	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_GREE)Built '$(NAME).a'.$(RESET)\n"
 
 compile_tests:
-	@make -s -C tests/strlen
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)/tests
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)$(TST_DIR)
 
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)Compiling tests... $(FG_CYAN)\033[40G[.]$(RESET)\r"
-	@mkdir -p $(OBJ_DIR)/tests/strlen
-	@cp tests/strlen/*.o $(OBJ_DIR)tests/strlen;
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)Compiled all the tests. $(FG_GREE)\033[40G[✓]$(RESET)\n"
+	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)Compiling tests... $(FG_CYAN)\033[40G[.]$(RESET)\r"
+
+#		COMPILE LIB TO TEST
+	make -s -C $(LIB_DIR)
+	mkdir -p $(OBJ_DIR)$(LIB_DIR)
+	cp $(LIB_DIR)/*.o $(OBJ_DIR)$(LIB_DIR)
+#		TEST STRLEN
+	make -s -C $(TST_DIR)strlen
+	mkdir -p $(OBJ_DIR)$(TST_DIR)strlen
+	cp $(TST_DIR)strlen/*.o $(OBJ_DIR)$(TST_DIR)strlen
+#		TEST SPLIT
+#	make -s -C $(TST_DIR)split
+#	mkdir -p $(OBJ_DIR)$(TST_DIR)split
+#	cp $(TST_DIR)split/*.o $(OBJ_DIR)$(TST_DIR)split
+
+	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_WHIT)Compiled all the tests. $(FG_GREE)\033[40G[✓]$(RESET)\n"
 
 test: all compile_tests
-	@$(eval OBJS := $(shell find . -type f -path "./obj/*.o"))
-	@$(CC) $(CFLAGS) $(INCLUDE) -I ./tests/* -o tester main.c $(OBJS) -L./ -lunit
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_GREE)Built 'tester'.$(RESET)\n"
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_CYAN)Starting in 2s...$(RESET)\r"
-	@sleep 1
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_CYAN)Starting in 1s...$(RESET)\n"
-	@sleep 1
-	@printf "\n"
-	@./tester
-
-log:
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_CYAN)Starting build process.$(RESET)\n"
+	$(eval OBJS := $(shell find . -type f -path "./obj/*.o"))
+	$(CC) $(CFLAGS) $(INCLUDE) -o run_tests main.c $(OBJS) -L./ -lunit
+	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_GREE)Built 'run_tests'.$(RESET)\n"
+	printf "\n"
+	./run_tests
 
 clean:
-	@$(shell find . -type f -path "./tests/*/*.o" -exec rm -f {} +)
-	@rm -rf $(OBJ_DIR)
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Build objects cleaned.$(RESET)\n"
+	rm -rf $(OBJ_DIR)
+	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Build objects cleaned.$(RESET)\n"
 
 fclean:
-	@rm -rf $(NAME) $(OBJ_DIR)
-	@printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Program files cleaned.$(RESET)\n"
+	$(shell find . -type d -path "./real_tests/*" -exec make fclean -s -C {} +)
+	make -s -C $(LIB_DIR) fclean
+	rm -rf $(NAME) $(OBJ_DIR)
+	printf "$(FG_GRAY)[ $(NAME^^) ] $(FG_MAGE)Program files cleaned.$(RESET)\n"
 
 re: fclean all
 
 .PHONY: all log clean fclean re
+.SILENT:

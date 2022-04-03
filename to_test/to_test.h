@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   to_test.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 13:52:23 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/03 15:59:10 by tjolivea         ###   ########lyon.fr   */
+/*   Created: 2022/04/03 15:49:53 by tjolivea          #+#    #+#             */
+/*   Updated: 2022/04/03 15:49:55 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
-#include "real_tests/strlen/test_strlen.h"
+#ifndef TO_TEST_H
+# define TO_TEST_H
 
-int	main(void)
-{
-	strlen_launcher();
-	return (0);
-}
+# include <stdlib.h>
+
+size_t	ft_strlen(char *s);
+
+#endif
